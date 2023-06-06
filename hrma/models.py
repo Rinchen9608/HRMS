@@ -9,4 +9,3 @@ class Employee(models.Model):
     department = models.CharField(max_length=100)
     appointment_date = models.DateField()
 
-    USERNAME_FIELD = "name" 

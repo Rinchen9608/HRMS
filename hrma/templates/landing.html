@@ -79,7 +79,6 @@
                                 <option value="{{designation}}">{{ designation }}</option>
                                 {% endfor %}
                             </select>
-
                         </div>
                         <div class="form-group input-box d-flex col-lg-4">
                             <select class="form-control input-1 text-center" id="department" name="department" required>
@@ -97,12 +96,9 @@
                     </div>
                 </form>
                 <hr class="mt-5">
-
             </div>
-
             <div class="table-div pt-4">
                 <table id="myTable" class="table table-bordered">
-
                     <thead>
                         <tr>
                             <th style="min-width:105px;">Name</th>
@@ -120,10 +116,10 @@
                         <td>{{i.name}}</td>
                         <td>{{i.employee_id}}</td>
                         <td>{{i.gender}}</td>
-                        <td>{{i.date_of_birth}}</td>
+                        <td>{{i.date_of_birth | date:"m/ d/ Y"}}</td>
                         <td>{{i.designation}}</td>
                         <td>{{i.department}}</td>
-                        <td>{{i.appointment_date}}</td>
+                        <td>{{i.appointment_date | date:"m/ d/ Y"}}</td>
                         <td class="text-center">
                             <a data-bs-toggle="modal" data-bs-target="#edit{{i.id}}">
                                 <iconify-icon icon="bx:edit-alt" style="color:#ff4b13; font-size:24px;"></iconify-icon>
@@ -180,7 +176,7 @@
 
 
                                             <a href="{% url 'landing' %}"
-                                                class="btn btn-block pl-4 pr-4 no-border no-outline text-uppercase"
+                                                class="btn btn-block pl-4 pr-4 mt-2  no-border no-outline text-uppercase"
                                                 style="background:#fff; color:#ff4b13; border:1px solid #ff4b13; height:50px;">
                                                 Cancel
                                             </a>

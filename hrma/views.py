@@ -25,6 +25,7 @@ def index(request):
     return render(request, 'index.html', {"message":message})
 
 def user_login(request):
+
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -40,8 +41,10 @@ def user_login(request):
             else:
                 return HttpResponse("Account not active")
         else:
-            print("Someone tried to login and failed")
-            print("Username: {} and password {}".format(username, password))
+            # return HttpResponse("Account not active")
+            # print("Someone tried to login and failed")
+            # print("Username: {} and password {}".format(username, password))
+            messages.error(request, "You entered wrong credentials.")
             return render(request, 'login1.html', {})
     else:
         return render(request, 'login1.html', {})
@@ -64,13 +67,20 @@ def landing(request):
         redirect("/user_login")
 
 def filter_employees(request):
+    from django.db.models import Q
+    user = Employee.objects.all()
+    unique_designations = set()
+    unique_departments = set()
+    for i in user:
+        unique_designations.add(i.designation)
+        unique_departments.add(i.department)
     if request.method == 'POST':
         gender = request.POST.get('gender')
         designation = request.POST.get('designation')
         department = request.POST.get('department')
-
-        # Apply filters to the queryset
         queryset = Employee.objects.all()
+        # Apply filters to the queryset
+        
 
         if gender and gender != 'Select Gender':
             queryset = queryset.filter(gender=gender)
@@ -80,7 +90,7 @@ def filter_employees(request):
             queryset = queryset.filter(department=department)
 
         # Pass the filtered queryset to the template
-        context = {'user': queryset}
+        context = {'user': queryset,'unique_designations': unique_designations, 'unique_departments': unique_departments}
         return render(request, 'landing.html', context)
 
     # Handle GET request or other cases
