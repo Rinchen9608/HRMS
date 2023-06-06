@@ -43,7 +43,7 @@
             <div class="navbar-container cont pt-3">
                 <img src="{% static 'img/logo-dk.png' %}" alt="" width="80px" height="auto">
                 <ul class="menu-items">
-                    <li><a href="{% url 'user_logout' %}"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Logout</a></li>
+                    <li><a href="{% url 'user_logout' %}"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</a></li>
                 </ul>
             </div>
         </nav>
@@ -89,11 +89,14 @@
                             </select>
 
                         </div>
-                        <button class="btn btn-block pl-4 pr-4 no-border no-outline text-uppercase"
-                            style="background:#fff; color:#ff4b13; border:1px solid #ff4b13; height:50px;"
-                            type="submit">Filter</button>
+                        <div class="filter-button col-lg-4 col-md-12">
+                            <button class="btn no-border col-lg-12 no-outline  text-uppercase"
+                                style="background:#ff4b13; color:#fff; border:1px solid #ff4b13; height:50px; "
+                                type="submit">Filter</button>
+                        </div>
                     </div>
                 </form>
+                <hr class="mt-5">
 
             </div>
 
